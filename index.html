@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/font-awesome.min.css">
 
     </head>
-    <body onload="Cargar();">
+    <body <!--onload="Cargar();"--> 
         <div class="row fondo">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <h1 class="text-center text-uppercase">Control Numero 2</h1>
@@ -22,11 +22,16 @@
         <!-- aqui parte el navBar -->
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="vista/listar.html">Listar Producto |</a>
             <a class="navbar-brand" href="vista/crear.html">Crear Producto |</a>
             <a class="navbar-brand" href="vista/eliminar.html">Eliminar Producto |</a>
             <a class="navbar-brand" href="vista/actualizar.html">Actualizar Producto |</a>
 
         </nav>
+        
+        <!-- ejecutamos otra manera de dibujar la tabla-->
+        
+        
 
         <!-- aqui partimos el data table -->
 
@@ -48,9 +53,9 @@
         <!--Librerias para botones de exportación-->
         <script src="js/buttons.html5.min.js"></script>
 
-        <script>
+   <!--     <script>
     function Cargar() {
-        alert("Entro a la funcion cargar");
+        //alert("Entro a la funcion cargar");
         var xmlhttp = new XMLHttpRequest();
         var url = "controller/listarproducto.php";
         xmlhttp.onreadystatechange = function () {
@@ -62,7 +67,7 @@
                 out += "<th>valor</th></tr><thead>";
                 for (i = 0; i < array.length; i++) {
                     out += " <tr><td>" +
-                            array[i].ID +
+                            array[i].id +
                             "</td><td>" +
                             array[i].Nombre +
                             "</td><td>" +
@@ -79,5 +84,6 @@
         xmlhttp.send();
     }
         </script>
+   -->
     </body>
 </html>

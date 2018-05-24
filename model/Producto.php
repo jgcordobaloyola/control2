@@ -108,6 +108,21 @@ class Producto {
             }
         }
     }
+    function listProduc() {
+        $db = new DataBase();
+        $conn = $db->connect();
+        if ($conn) {
+            $sql = "SELECT id,nombre,codigo,valor FROM producto";
+            if ($conn->query($sql)) {
+                $rs = $conn->query($sql);
+                return array (TRUE, $this->toJSON($rs));
+             // print_r(mysqli_fetch_assoc($rs));
+                //return mysqli_fetch_all($rs);
+                //return mysqli_fetch_assoc($rs);
+            }
+        }
+    }
+
 
 //    public function view() {
 //        try {
