@@ -14,7 +14,7 @@ include("../model/Producto.php");
 $product = new Producto();
 $array_producto = Array();
 //$products = Array();
-$array_producto = $product->listProduc();
+$array_producto = $product->listProducto();
 echo json_encode($array_producto);
 
 ?>

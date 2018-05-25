@@ -81,10 +81,10 @@ class Producto {
 
         if ($conn) {
             $sql = "update producto "
-                    ."set nombre ='".$this->nombre."',"
-                    ."codigo ='".$this->codigo."',"
-                    ."valor ='".$this->valor."' "
-                    ."where id=".$this->id.";";
+                    . "set nombre ='" . $this->nombre . "',"
+                    . "codigo ='" . $this->codigo . "',"
+                    . "valor ='" . $this->valor . "' "
+                    . "where id=" . $this->id . ";";
 
             if ($conn->query($sql) === TRUE) {
                 return array(TRUE, $this->toJSON());
@@ -108,21 +108,50 @@ class Producto {
             }
         }
     }
+
     function listProduc() {
         $db = new DataBase();
         $conn = $db->connect();
         if ($conn) {
-            $sql = "SELECT id,nombre,codigo,valor FROM producto";
+            $sql = "SELECT id,nombre,codigo,valor FROM producto;";
             if ($conn->query($sql)) {
                 $rs = $conn->query($sql);
-                return array (TRUE, $this->toJSON($rs));
-             // print_r(mysqli_fetch_assoc($rs));
-                //return mysqli_fetch_all($rs);
+                //return array (TRUE, $this->toJSON($rs));
+                // print_r(mysqli_fetch_assoc($rs));
+                return mysqli_fetch_all($rs);
                 //return mysqli_fetch_assoc($rs);
+                while ($fila = mysqli_fetch_assoc($rs)) {
+//                 print_r($fila);
+                    array_push($filas, $fila);
+                }
+                return $filas;
             }
         }
     }
 
+    function listProducto() {
+        $filas = [];
+        $db = new DataBase();
+        $conn = $db->connect();
+        if ($conn) {
+            $sql = "SELECT id,nombre,codigo,valor FROM producto;";
+            if ($conn->query($sql)) {
+                $rs = $conn->query($sql);
+//                print_r(mysqli_fetch_assoc($rs));
+                // print_r(mysqli_fetch_assoc($rs));
+//               array_push($users, $user->listUsers());
+
+
+
+                while ($fila = mysqli_fetch_assoc($rs)) {
+//                 print_r($fila);
+                    array_push($filas, $fila);
+                }
+//                return mysqli_fetch_all($rs);
+                return $filas;
+            }
+        }
+    }
 
 //    public function view() {
 //        try {
