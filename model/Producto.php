@@ -137,45 +137,16 @@ class Producto {
             $sql = "SELECT id,nombre,codigo,valor FROM producto;";
             if ($conn->query($sql)) {
                 $rs = $conn->query($sql);
-//                print_r(mysqli_fetch_assoc($rs));
-                // print_r(mysqli_fetch_assoc($rs));
-//               array_push($users, $user->listUsers());
-
-
 
                 while ($fila = mysqli_fetch_assoc($rs)) {
-//                 print_r($fila);
                     array_push($filas, $fila);
                 }
-//                return mysqli_fetch_all($rs);
                 return $filas;
             }
         }
     }
 
-//    public function view() {
-//        try {
-//            $db = new DataBase();
-//            $conn = $db->connect();
-//
-//            if ($conn) {
-//                $sql = "select * from producto";
-//                $resultado = mysqli_query($conn, $query);
-//
-//                if ($conn->query($sql) === TRUE) {
-//                    echo 'Si hizo la query';
-////                    while ($data = mysqli_fetch_assoc($resultado)) {
-////                        $arreglo[] = $data;
-////                    }
-//                    return array(TRUE, $this->toJSON());
-//                } else {
-//                    return array(FALSE, $conn->error);
-//                }
-//            }
-//        } catch (Exception $ex) {
-//            die($e->getMessage());
-//        }
-//    }
+
 
     function toJSON() {
         $arr = array(
