@@ -94,21 +94,6 @@ class Producto {
         }
     }
 
-    public function listar() {
-        $db = new DataBase();
-        $conn = $db->connect();
-
-        if ($conn) {
-            $sql = "select * from producto";
-
-            if ($conn->query($sql) === TRUE) {
-                return array(TRUE, $this->toJSON());
-            } else {
-                return array(FALSE, $conn->error);
-            }
-        }
-    }
-
     function listProduc() {
         $db = new DataBase();
         $conn = $db->connect();
@@ -139,6 +124,11 @@ class Producto {
                 $rs = $conn->query($sql);
 
                 while ($fila = mysqli_fetch_assoc($rs)) {
+                    $p = new Producto();
+                    $p->setId($fila['id']);
+                    $p->setId($fila['nombre']);
+                    $p->setId($fila['codigo']);
+                    $p->setId($fila['Valor']);
                     array_push($filas, $fila);
                 }
                 return $filas;
