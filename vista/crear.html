@@ -55,7 +55,7 @@ and open the template in the editor.
             </nav>
 
             <div class="wrapper">
-                <form id="createUserForm" action="../controller/crearproducto.php" method="post" name="Login_Form" class="form-signin">
+                <div id="createUserForm"  name="Login_Form" class="form-signin">
                     <h3 class="form-signin-heading">Bienvenido al sistema de productos</h3>
                     <hr class="colorgraph">
                     <br>
@@ -63,19 +63,15 @@ and open the template in the editor.
                     <input type="text" class="form-control" name="codigo" placeholder="codigo" required="" autofocus="" />
                     <input type="text" class="form-control" name="valor" placeholder="valor" required="" autofocus="" />
 
-                    <!--
-                    <input type="text" class="form-control" name="username" placeholder="username" required="" autofocus="" />
-                    <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-                    -->
 
-                    <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Crear Producto</button>
-                </form>
+                    <button id="btnCrear" value="Login" type="button">Crear Producto</button>
+                </div>
 
             </div>
         </div>
         <script type="text/javascript">
                 $(document).ready(function () {
-                    $("#createUserForm").submit(function (event) {
+                    $("#btnCrear").click(function (event) {
                         var body = {
                             //'username': $("input[name='username']").val(),
                             //'password': $("input[name='password']").val()
@@ -96,7 +92,7 @@ and open the template in the editor.
                                 text: resp['responseText'],
                             })
                         });
-                        event.preventDefault();
+                        //event.preventDefault();
                     })
                 })
         </script>

@@ -94,49 +94,56 @@ class Producto {
         }
     }
 
-    function listProduc() {
+    function listarProductos() {
+        $productos = [];
+
         $db = new DataBase();
         $conn = $db->connect();
         if ($conn) {
-            $sql = "SELECT id,nombre,codigo,valor FROM producto;";
+            $sql = "SELECT id,nombre,codigo,valor FROM producto";
             if ($conn->query($sql)) {
                 $rs = $conn->query($sql);
-                //return array (TRUE, $this->toJSON($rs));
                 // print_r(mysqli_fetch_assoc($rs));
-                return mysqli_fetch_all($rs);
-                //return mysqli_fetch_assoc($rs);
                 while ($fila = mysqli_fetch_assoc($rs)) {
-//                 print_r($fila);
-                    array_push($filas, $fila);
-                }
-                return $filas;
-            }
-        }
-    }
 
-    function listProducto() {
-        $filas = [];
-        $db = new DataBase();
-        $conn = $db->connect();
-        if ($conn) {
-            $sql = "SELECT id,nombre,codigo,valor FROM producto;";
-            if ($conn->query($sql)) {
-                $rs = $conn->query($sql);
-
-                while ($fila = mysqli_fetch_assoc($rs)) {
                     $p = new Producto();
                     $p->setId($fila['id']);
-                    $p->setId($fila['nombre']);
-                    $p->setId($fila['codigo']);
-                    $p->setId($fila['Valor']);
-                    array_push($filas, $fila);
+                    $p->setNombre($fila['nombre']);
+                    $p->setValor($fila['valor']);
+                    $p->setCodigo($fila['codigo']);
+
+                    array_push($productos, $p);
                 }
-                return $filas;
+                return $productos;
+
+//                return mysqli_fetch_all($rs);
             }
         }
     }
 
-
+//    function listarProductos() {
+//        $productos = [];
+//        $db = new DataBase();
+//        $conn = $db->connect();
+//
+//        if ($conn) {
+//            $sql = "Select id, nombre, codigo,valor"
+//                    . "from producto";
+//            if ($conn->query($sql)) {
+//                $rs = $conn->query($sql);
+//
+//                while ($fila = mysqli_fetch_assoc($rs)) {
+//                    $p = new Producto();
+//                    $p->setId($fila['id']);
+//                    $p->setNombre($fila['nombre']);
+//                    $p->setValor($fila['valor']);
+//                    $p->setCodigo($fila['codigo']);
+//                    array_push($productos, $p);
+//                }
+//                return $productos;
+//            }
+//        }
+//    }
 
     function toJSON() {
         $arr = array(
@@ -146,6 +153,16 @@ class Producto {
             'valor' => $this->valor,
         );
         return json_encode($arr);
+    }
+
+    function toArray() {
+        $arr = array(
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'codigo' => $this->codigo,
+            'valor' => $this->valor,
+        );
+        return $arr;
     }
 
 }

@@ -1,20 +1,20 @@
 <?php
 include("../model/Producto.php");
 
-//$producto = new Producto();
-//
-//
-//$query = $producto->listar();
-//while ($resultado = mysql_fetch_array($query)){
-//    echo $resultado['id'];
-//}
-
-//print_r($producto->listar());// $producto->listar();
-
 $product = new Producto();
 $array_producto = Array();
-//$products = Array();
-$array_producto = $product->listProducto();
-echo json_encode($array_producto);
+$array_producto = $product->listarProductos();
+//echo json_encode(array("$product"=>$array_producto));
+
+$resp = [];
+foreach ($array_producto as $p){
+    $productoArray = $p->toArray();
+    array_push($resp , $productoArray);
+}
+
+header('Content-Type: application/json');
+
+echo json_encode($resp);
+
 
 ?>
